@@ -144,26 +144,26 @@ function Dashboard({ email }) {
       <section className="panel">
         <div className="topbar">
           <h2>Contact icons</h2>
-          <button className="btn ghost" onClick={() => addRow("socials", socials, { type: "phone", value: "", is_active: false })}>Add icon</button>
+          <button className="btn ghost" onClick={() => addRow("lp_socials", socials, { type: "phone", value: "", is_active: false })}>Add icon</button>
         </div>
         {socials.map((s, i) => (
           <SocialItem key={s.id} row={s} index={i} count={socials.length}
-            onSave={(patch) => saveRow("socials", s.id, patch)}
-            onDelete={() => removeRow("socials", s.id)}
-            onMove={(d) => move("socials", socials, i, d)} />
+            onSave={(patch) => saveRow("lp_socials", s.id, patch)}
+            onDelete={() => removeRow("lp_socials", s.id)}
+            onMove={(d) => move("lp_socials", socials, i, d)} />
         ))}
       </section>
 
       <section className="panel">
         <div className="topbar">
           <h2>Link buttons</h2>
-          <button className="btn ghost" onClick={() => addRow("links", links, { title: "New link", url: "https://", is_active: false })}>Add link</button>
+          <button className="btn ghost" onClick={() => addRow("lp_links", links, { title: "New link", url: "https://", is_active: false })}>Add link</button>
         </div>
         {links.map((l, i) => (
           <LinkItem key={l.id} row={l} index={i} count={links.length}
-            onSave={(patch) => saveRow("links", l.id, patch)}
-            onDelete={() => removeRow("links", l.id)}
-            onMove={(d) => move("links", links, i, d)} />
+            onSave={(patch) => saveRow("lp_links", l.id, patch)}
+            onDelete={() => removeRow("lp_links", l.id)}
+            onMove={(d) => move("lp_links", links, i, d)} />
         ))}
       </section>
 
