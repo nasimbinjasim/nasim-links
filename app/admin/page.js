@@ -96,15 +96,18 @@ function Dashboard({ email }) {
   }
 
   async function saveRow(table, id, patch) {
-    const { error } = await supabase.from(table).update(patch).eq("id", id);
-    flash(error ? error.message : "Saved");
+    const { data, error } = await supabase.from(table).update(patch).eq("id", id).select("id");
+    if (error) flash(error.message);
+    else if (!data || data.length === 0) flash("NOT saved: this login is not allowed to edit. Check the admin email in Supabase.");
+    else flash("Saved");
     load();
   }
 
   async function removeRow(table, id) {
     if (!confirm("Delete this item?")) return;
-    const { error } = await supabase.from(table).delete().eq("id", id);
+    const { data, error } = await supabase.from(table).delete().eq("id", id).select("id");
     if (error) flash(error.message);
+    else if (!data || data.length === 0) flash("NOT deleted: this login is not allowed to edit. Check the admin email in Supabase.");
     load();
   }
 
